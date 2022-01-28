@@ -27,11 +27,11 @@
 
 ## 快速上手
 
-示例：针对我写好的 [靶机](https://github.com/EmYiQing/CIDemo) 进行SSRF漏洞的检测
+示例：针对我写好的 [靶机](https://github.com/EmYiQing/SIDemo) 进行SSRF漏洞的检测
 
-配置靶机下载地址：[CIDemo](https://github.com/EmYiQing/CIDemo/releases/download/1.0/CIDemo.jar)
+配置靶机下载地址：[SIDemo](https://github.com/EmYiQing/SIDemo/releases/download/1.0/SIDemo.jar)
 
-命令：`java -jar SpringInspector.jar cidemo.jar --springboot --package org.sec --module SSRF`
+命令：`java -jar SpringInspector.jar sidemo.jar --springboot --package org.sec --module SSRF`
 
 该工具扫描速度极快，只需要几秒，将会扫描到以下四条链
 
@@ -40,27 +40,27 @@
 14:03:55 [INFO] [SSRFService] start analysis ssrf
 14:03:55 [INFO] [SSRFService] detect jdk ssrf
 JDK SSRF
-	org/sec/cidemo/web/SSRFController.ssrf1
-	org/sec/cidemo/service/SSRFService.ssrf1
-	org/sec/cidemo/service/impl/SSRFServiceImpl.ssrf1
+	org/sec/sidemo/web/SSRFController.ssrf1
+	org/sec/sidemo/service/SSRFService.ssrf1
+	org/sec/sidemo/service/impl/SSRFServiceImpl.ssrf1
 
 14:03:55 [INFO] [SSRFService] detect apache ssrf
 Apache SSRF
-	org/sec/cidemo/web/SSRFController.ssrf2
-	org/sec/cidemo/service/SSRFService.ssrf2
-	org/sec/cidemo/service/impl/SSRFServiceImpl.ssrf2
+	org/sec/sidemo/web/SSRFController.ssrf2
+	org/sec/sidemo/service/SSRFService.ssrf2
+	org/sec/sidemo/service/impl/SSRFServiceImpl.ssrf2
 
 14:03:55 [INFO] [SSRFService] detect socket ssrf
 Socket SSRF
-	org/sec/cidemo/web/SSRFController.ssrf3
-	org/sec/cidemo/service/SSRFService.ssrf3
-	org/sec/cidemo/service/impl/SSRFServiceImpl.ssrf3
+	org/sec/sidemo/web/SSRFController.ssrf3
+	org/sec/sidemo/service/SSRFService.ssrf3
+	org/sec/sidemo/service/impl/SSRFServiceImpl.ssrf3
 
 14:03:55 [INFO] [SSRFService] detect okhttp ssrf
 Okhttp SSRF
-	org/sec/cidemo/web/SSRFController.ssrf4
-	org/sec/cidemo/service/SSRFService.ssrf4
-	org/sec/cidemo/service/impl/SSRFServiceImpl.ssrf4
+	org/sec/sidemo/web/SSRFController.ssrf4
+	org/sec/sidemo/service/SSRFService.ssrf4
+	org/sec/sidemo/service/impl/SSRFServiceImpl.ssrf4
 ......
 ```
 
