@@ -48,7 +48,7 @@ public class RedirectMethodAdapter extends CoreMethodAdapter<Boolean> {
 
     @Override
     public void visitLdcInsn(Object cst) {
-        if (((String) cst).contains("redirect://")) {
+        if (cst instanceof String && ((String) cst).contains("redirect://")) {
             flag = true;
         }
         super.visitLdcInsn(cst);
