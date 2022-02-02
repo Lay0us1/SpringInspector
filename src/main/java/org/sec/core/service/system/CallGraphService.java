@@ -1,6 +1,6 @@
-package org.sec.core.service;
+package org.sec.core.service.system;
 
-import org.sec.core.asm.CallGraphClassVisitor;
+import org.sec.core.asm.system.CallGraphClassVisitor;
 import org.sec.log.SLF4J;
 import org.sec.model.CallGraph;
 import org.sec.model.ClassFile;

@@ -55,6 +55,7 @@ public class RedirectMethodAdapter extends CoreMethodAdapter<Boolean> {
     }
 
     @Override
+    @SuppressWarnings("all")
     public void visitMethodInsn(int opcode, String owner, String name, String desc, boolean itf) {
         boolean getParamCondition = owner.equals("javax/servlet/http/HttpServletRequest") &&
                 name.equals("getParameter") && desc.equals("(Ljava/lang/String;)Ljava/lang/String;");

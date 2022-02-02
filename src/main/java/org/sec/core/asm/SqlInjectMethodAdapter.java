@@ -1,46 +1,21 @@
 package org.sec.core.asm;
 
 import org.objectweb.asm.MethodVisitor;
-import org.objectweb.asm.Opcodes;
-import org.objectweb.asm.Type;
-import org.sec.core.jvm.CoreMethodAdapter;
+import org.sec.core.asm.base.ParamTaintMethodAdapter;
 
 import java.util.List;
 
-public class SqlInjectMethodAdapter extends CoreMethodAdapter<Boolean> {
-    private final int access;
-    private final String desc;
-    private final int methodArgIndex;
+public class SqlInjectMethodAdapter extends ParamTaintMethodAdapter {
     private final List<Boolean> save;
 
     public SqlInjectMethodAdapter(int methodArgIndex, List<Boolean> save, int api, MethodVisitor mv,
                                   String owner, int access, String name, String desc) {
-        super(api, mv, owner, access, name, desc);
-        this.access = access;
-        this.desc = desc;
-        this.methodArgIndex = methodArgIndex;
+        super(methodArgIndex, api, mv, owner, access, name, desc);
         this.save = save;
     }
 
     @Override
-    public void visitCode() {
-        super.visitCode();
-        int localIndex = 0;
-        int argIndex = 0;
-        if ((this.access & Opcodes.ACC_STATIC) == 0) {
-            localIndex += 1;
-            argIndex += 1;
-        }
-        for (Type argType : Type.getArgumentTypes(desc)) {
-            if (argIndex == this.methodArgIndex) {
-                localVariables.set(localIndex, true);
-            }
-            localIndex += argType.getSize();
-            argIndex += 1;
-        }
-    }
-
-    @Override
+    @SuppressWarnings("all")
     public void visitMethodInsn(int opcode, String owner, String name, String desc, boolean itf) {
         boolean buildSqlCondition = owner.equals("java/lang/StringBuilder") &&
                 name.equals("append") &&

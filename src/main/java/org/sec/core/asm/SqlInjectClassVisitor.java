@@ -4,19 +4,19 @@ import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.commons.JSRInlinerAdapter;
+import org.sec.core.asm.base.BaseClassVisitor;
 import org.sec.model.MethodReference;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SqlInjectClassVisitor extends ClassVisitor {
-    private String name;
+public class SqlInjectClassVisitor extends BaseClassVisitor {
     private final MethodReference.Handle methodHandle;
     private final int methodArgIndex;
     private final List<Boolean> save;
 
-    public  SqlInjectClassVisitor(MethodReference.Handle targetMethod, int targetIndex) {
-        super(Opcodes.ASM6);
+    public SqlInjectClassVisitor(MethodReference.Handle targetMethod, int targetIndex) {
+        super(null, 0, null);
         this.methodHandle = targetMethod;
         this.methodArgIndex = targetIndex;
         this.save = new ArrayList<>();
@@ -24,13 +24,6 @@ public class SqlInjectClassVisitor extends ClassVisitor {
 
     public List<Boolean> getSave() {
         return save;
-    }
-
-    @Override
-    public void visit(int version, int access, String name, String signature,
-                      String superName, String[] interfaces) {
-        super.visit(version, access, name, signature, superName, interfaces);
-        this.name = name;
     }
 
     @Override

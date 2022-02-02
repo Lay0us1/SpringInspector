@@ -1,4 +1,4 @@
-package org.sec.core.asm;
+package org.sec.core.asm.system;
 
 import org.objectweb.asm.*;
 import org.sec.model.ClassReference;

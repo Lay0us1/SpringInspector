@@ -1,21 +1,21 @@
 package org.sec.core.asm;
 
-import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.commons.JSRInlinerAdapter;
+import org.sec.core.asm.base.BaseClassVisitor;
 import org.sec.model.MethodReference;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class RedirectClassVisitor extends ClassVisitor {
+public class RedirectClassVisitor extends BaseClassVisitor {
     private String name;
     private final Map<String, Boolean> pass;
     private final MethodReference methodReference;
 
     public RedirectClassVisitor(MethodReference methodReference) {
-        super(Opcodes.ASM6);
+        super(null,0,null);
         this.methodReference = methodReference;
         this.pass = new HashMap<>();
     }

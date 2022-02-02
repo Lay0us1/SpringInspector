@@ -1,7 +1,7 @@
-package org.sec.core.service;
+package org.sec.core.service.system;
 
 import org.objectweb.asm.ClassReader;
-import org.sec.core.asm.DiscoveryClassVisitor;
+import org.sec.core.asm.system.DiscoveryClassVisitor;
 import org.sec.log.SLF4J;
 import org.sec.model.ClassFile;
 import org.sec.model.ClassReference;

@@ -2,6 +2,7 @@ package org.sec.core.service;
 
 import org.objectweb.asm.ClassReader;
 import org.sec.core.asm.RedirectClassVisitor;
+import org.sec.core.data.RedirectCollector;
 import org.sec.core.spring.SpringController;
 import org.sec.core.spring.SpringMapping;
 import org.sec.log.SLF4J;
@@ -37,26 +38,7 @@ public class RedirectService {
                     ClassReader cr = new ClassReader(file.getFile());
                     RedirectClassVisitor cv = new RedirectClassVisitor(mapping.getMethodReference());
                     cr.accept(cv, ClassReader.EXPAND_FRAMES);
-                    if (cv.getPass("SERVLET") != null && cv.getPass("SERVLET")) {
-                        ResultInfo resultInfo = new ResultInfo();
-                        resultInfo.setRisk(ResultInfo.MID_RISK);
-                        resultInfo.setVulName("SERVLET REDIRECT");
-                        resultInfo.getChains().add(mapping.getController().getClassReference().getName() + "."
-                                + mapping.getMethodReference().getName());
-                        results.add(resultInfo);
-                        System.out.println(resultInfo);
-                        logger.info("detect servlet redirect");
-                    }
-                    if (cv.getPass("SPRING") != null && cv.getPass("SPRING")) {
-                        ResultInfo resultInfo = new ResultInfo();
-                        resultInfo.setRisk(ResultInfo.MID_RISK);
-                        resultInfo.setVulName("SPRING REDIRECT");
-                        resultInfo.getChains().add(mapping.getController().getClassReference().getName() + "."
-                                + mapping.getMethodReference().getName());
-                        results.add(resultInfo);
-                        System.out.println(resultInfo);
-                        logger.info("detect spring redirect");
-                    }
+                    RedirectCollector.collect(cv, mapping, results);
                 } catch (Exception e) {
                     e.printStackTrace();
                     return;

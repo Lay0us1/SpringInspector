@@ -1,4 +1,4 @@
-package org.sec.core.service;
+package org.sec.core.service.system;
 
 import org.sec.core.inherit.InheritanceMap;
 import org.sec.core.inherit.InheritanceUtil;
