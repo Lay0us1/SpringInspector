@@ -33,37 +33,6 @@
 
 命令：`java -jar SpringInspector.jar sidemo.jar --springboot --package org.sec --module SSRF`
 
-该工具扫描速度极快，只需要几秒，将会扫描到以下四条链
-
-```text
-......
-14:03:55 [INFO] [SSRFService] start analysis ssrf
-14:03:55 [INFO] [SSRFService] detect jdk ssrf
-JDK SSRF
-	org/sec/sidemo/web/SSRFController.ssrf1
-	org/sec/sidemo/service/SSRFService.ssrf1
-	org/sec/sidemo/service/impl/SSRFServiceImpl.ssrf1
-
-14:03:55 [INFO] [SSRFService] detect apache ssrf
-Apache SSRF
-	org/sec/sidemo/web/SSRFController.ssrf2
-	org/sec/sidemo/service/SSRFService.ssrf2
-	org/sec/sidemo/service/impl/SSRFServiceImpl.ssrf2
-
-14:03:55 [INFO] [SSRFService] detect socket ssrf
-Socket SSRF
-	org/sec/sidemo/web/SSRFController.ssrf3
-	org/sec/sidemo/service/SSRFService.ssrf3
-	org/sec/sidemo/service/impl/SSRFServiceImpl.ssrf3
-
-14:03:55 [INFO] [SSRFService] detect okhttp ssrf
-Okhttp SSRF
-	org/sec/sidemo/web/SSRFController.ssrf4
-	org/sec/sidemo/service/SSRFService.ssrf4
-	org/sec/sidemo/service/impl/SSRFServiceImpl.ssrf4
-......
-```
-
 可选参数说明
 
 |      参数      |          参数说明           |  参数类型   | 是否必须 |
@@ -150,13 +119,14 @@ Sink方法的参数有多种重载，已针对这些类型做处理（污点传�
 
 开启检测模块关键字：DOS
 
-|    漏洞名    |                漏洞细节                |
-|:---------:|:----------------------------------:|
-|  RE DOS   |      Pattern.matches(str,str)      |
-|  FOR DOS  |       for(int i=0;i<int;i++)       |
-| ARRAY DOS | object[] array = new object\[int\] |
-| LIST DOS  |   List list = new ArrayList(int)   |
-|  MAP DOS  |     Map map = new HashMap(int)     |
+|    漏洞名    |                           漏洞细节                            |
+|:---------:|:---------------------------------------------------------:|
+|  RE DOS   |         java.util.regex.Pattern.matches(str,str)          |
+|  RE DOS   | org.apache.commons.lang3.Validate.matchesPattern(str,str) |
+|  FOR DOS  |                  for(int i=0;i<int;i++)                   |
+| ARRAY DOS |            object[] array = new object\[int\]             |
+| LIST DOS  |              List list = new ArrayList(int)               |
+|  MAP DOS  |                Map map = new HashMap(int)                 |
 
 检测说明：
 

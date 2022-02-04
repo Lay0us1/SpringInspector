@@ -72,7 +72,11 @@ public class DOSMethodAdapter extends ParamTaintMethodAdapter {
                 (owner.equals("java/util/regex/Pattern")) &&
                 (name.equals("matches")) &&
                 (desc.equals("(Ljava/lang/String;Ljava/lang/CharSequence;)Z"));
-        if (patternMatches) {
+        boolean validate = (opcode == Opcodes.INVOKESTATIC) &&
+                (owner.equals("org/apache/commons/lang3/Validate")) &&
+                (name.equals("matchesPattern")) &&
+                (desc.equals("(Ljava/lang/CharSequence;Ljava/lang/String;)V"));
+        if (patternMatches || validate) {
             if (operandStack.get(0).contains(true)) {
                 flag.add(true);
                 super.visitMethodInsn(opcode, owner, name, desc, itf);

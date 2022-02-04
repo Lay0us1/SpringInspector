@@ -124,6 +124,7 @@ public abstract class BaseService {
                 Method method = collector.getMethod("collect", BaseClassVisitor.class, List.class, List.class);
                 method.invoke(null, cv, tempChain, results);
             }
+            tempChain.clear();
         } catch (Exception e) {
             e.printStackTrace();
             return;
