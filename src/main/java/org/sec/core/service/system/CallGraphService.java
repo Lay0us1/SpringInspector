@@ -13,7 +13,7 @@ import java.util.*;
 
 @SLF4J
 public class CallGraphService {
-    
+
     private static Logger logger;
 
     public static void start(Set<CallGraph> discoveredCalls,
@@ -47,6 +47,9 @@ public class CallGraphService {
         }
         // resolve interface problem: interface -> impls
         for (int i = 0; i < discoveredCalls.size(); i++) {
+            if (i >= tempList.size()) {
+                break;
+            }
             MethodReference.Handle targetMethod = tempList.get(i).getTargetMethod();
             ClassReference.Handle handle = targetMethod.getClassReference();
             ClassReference targetClass = classMap.get(handle);
