@@ -5,6 +5,8 @@
 ![](https://img.shields.io/badge/Java-8-red)
 ![](https://img.shields.io/badge/Line-5208-yellow)
 
+**该项目暂时不能用于实战，我将逐渐完善和添加规则**
+
 一个Java自动代码审计工具，尤其针对Spring框架，也可自行改造以适配其他情况
 
 提供一个SpringBoot的Jar包即可进行自动代码审计，底层技术基于字节码分析
